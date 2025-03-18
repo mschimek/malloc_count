@@ -33,7 +33,7 @@
 #include <locale.h>
 #include <dlfcn.h>
 
-#include "malloc_count.h"
+#include "malloc_count/malloc_count.h"
 
 /* user-defined options for output malloc()/free() operations to stderr */
 
@@ -349,13 +349,6 @@ static __attribute__((constructor)) void init(void)
         fprintf(stderr,  PPREFIX "error %s\n", error);
         exit(EXIT_FAILURE);
     }
-}
-
-static __attribute__((destructor)) void finish(void)
-{
-    fprintf(stderr, PPREFIX
-            "exiting, total: %'lld, peak: %'lld, current: %'lld\n",
-            total, peak, curr);
 }
 
 /*****************************************************************************/
